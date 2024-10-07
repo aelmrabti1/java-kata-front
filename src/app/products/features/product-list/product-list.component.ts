@@ -6,6 +6,8 @@ import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
+import {CartStore} from "../../cart-service/cart.service";
+import {CurrencyPipe, DatePipe, NgOptimizedImage} from "@angular/common";
 
 const emptyProduct: Product = {
   id: 0,
@@ -29,10 +31,11 @@ const emptyProduct: Product = {
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.scss"],
   standalone: true,
-  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent],
+  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, DatePipe, CurrencyPipe, NgOptimizedImage],
 })
 export class ProductListComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
+  private readonly cardStore : CartStore  = inject(CartStore);
 
   public readonly products = this.productsService.products;
 
@@ -75,5 +78,9 @@ export class ProductListComponent implements OnInit {
 
   private closeDialog() {
     this.isDialogVisible = false;
+  }
+
+  addToCart(product: Product) {
+    this.cardStore.addProduct(product);
   }
 }

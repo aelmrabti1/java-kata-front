@@ -7,10 +7,76 @@
         @for (product of products; track product) {
             <p-card class="block mb-2">
                 <span class="font-medium text-secondary text-sm">{{ product.category }}</span>
-                <div class="text-lg font-medium text-900 mt-2">{{ product.name }}</div>
+              <div class="text-lg font-medium text-900 mt-2">{{ product.name }}</div>
+
+              <table>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td>ID</td>
+                  <td>{{ product.id }}</td>
+                </tr>
+                <tr>
+                  <td>Code</td>
+                  <td>{{ product.code }}</td>
+                </tr>
+                <tr>
+                  <td>Name</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td>{{ product.description }}</td>
+                </tr>
+                <tr>
+                  <td>Image</td>
+                  <td>{{ product.image }}</td>
+                </tr>
+                <tr>
+                  <td>Category</td>
+                <td>{{ product.category }}</td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td>{{ product.price | currency }}</td>
+                </tr>
+                <tr>
+                  <td>Quantity</td>
+                  <td>{{ product.quantity }}</td>
+                </tr>
+                <tr>
+                  <td>Internal Reference</td>
+                  <td>{{ product.internalReference }}</td>
+                </tr>
+                <tr>
+                  <td>Shell ID</td>
+                  <td>{{ product.shellId }}</td>
+                </tr>
+                <tr>
+                  <td>Inventory Status</td>
+                  <td>{{ product.inventoryStatus }}</td>
+                </tr>
+                <tr>
+                  <td>Rating</td>
+                  <td>{{ product.rating }}</td>
+                </tr>
+                <tr>
+                  <td>Created At</td>
+                  <td>{{ product.createdAt | date }}</td>
+                </tr>
+                <tr>
+                  <td>Updated At</td>
+                  <td>{{ product.updatedAt | date }}</td>
+                </tr>
+                <tr>
+
+              </table>
 
                 <ng-template pTemplate="footer">
                     <div class="flex gap-3 mt-1">
+                        <p-button label="Ajouter au panier" severity="primary" (onClick)="addToCart(product)"/>
                         <p-button label="Modifier" severity="secondary" (onClick)="onUpdate(product)"/>
                         <p-button label="Supprimer" severity="danger" (onClick)="onDelete(product)" />
                     </div>

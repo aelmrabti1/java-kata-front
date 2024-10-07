@@ -1,10 +1,11 @@
 import {
-  Component,
+  Component, inject,
 } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import { SplitterModule } from 'primeng/splitter';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PanelMenuComponent } from "./shared/ui/panel-menu/panel-menu.component";
+import {CartStore} from "./products/cart-service/cart.service";
 
 @Component({
   selector: "app-root",
@@ -15,4 +16,12 @@ import { PanelMenuComponent } from "./shared/ui/panel-menu/panel-menu.component"
 })
 export class AppComponent {
   title = "ALTEN SHOP";
+
+  protected readonly cardStore : CartStore  = inject(CartStore);
+
+  constructor(private router: Router) {}
+
+  navigateToCart() {
+    this.router.navigate(['/cart']).then(r => {});
+  }
 }
